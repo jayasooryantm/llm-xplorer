@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Xplorer - Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h1>LLM Xplorer</h1>
+        <p> Test the LLM using a prompt.</p>
+
+        <form method="post" action="{% url 'home' %}" class="row">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="em_id" class="form-label">Enter the Tweet or Comment</label>
+                {{form.tweet}}
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        <br><br>
+        {% if tweet != "" %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Input Tweet/Comment</h5>
+                <p class="card-text">{{tweet}}</p>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
