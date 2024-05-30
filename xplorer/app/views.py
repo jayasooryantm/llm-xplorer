@@ -3,6 +3,8 @@ from .forms import tweet_to_llm
 
 from django.shortcuts import render
 import subprocess
+import json
+
 
 CONTEXT = "you have to read and analyze the prompt that given with this context and categorize the setiment of the text. POSITIVE, NEGATIVE, NEUTRAL, IRRELAVENT are the categories. only reply the category in json format. The text is "
 
@@ -11,17 +13,20 @@ def check_sentiment(tweet: str):
     # Get context data from the request (modify as needed based on your model)
     context = CONTEXT
     prompt = context + tweet
-    # Construct the Ollama command with context (adjust based on your needs)
-    ollama_command = ["ollama", "run", "llama3", prompt]
-
-    # Execute Ollama command using subprocess
+    command = ["python3",
+               "/Users/jaya/Downloads/gpt2 app/gpt2.py", "--text", prompt]
+    script_process = subprocess.run(command)
     try:
-        response_bytes = subprocess.run(
-            ollama_command, capture_output=True).stdout
-        response_text = response_bytes.decode("utf-8").strip()
-    except subprocess.CalledProcessError as error:
-        response_text = f"Error calling Ollama: {error}"
-    return response_text
+        with open("gpt2_output.txt", "r") as f:
+            response_data = json.load(f)
+    except FileNotFoundError:
+        response_data = {"error": "Error: GPT2 script output not found."}
+
+    return response_data
+
+
+def attention_viz():
+    pass
 
 
 def home(request):
@@ -32,5 +37,6 @@ def home(request):
     if request.method == "POST" and form.is_valid():
         tweet = form.cleaned_data["tweet"]
         sentiment = check_sentiment(tweet)
+        print(sentiment)
 
     return render(request, "home.html", {"form": form, "tweet": tweet, "sentiment": sentiment})
