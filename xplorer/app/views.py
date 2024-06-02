@@ -33,15 +33,25 @@ def home(request):
         inputs, attentions = mlmodel.get_attention(prompt)
 
         num_heads = attentions[-1].shape[1]
-        fig, axes = plt.subplots(1, num_heads, figsize=(20, 15))
-        if num_heads == 1:
-            axes = [axes]  # Make sure axes is iterable if there's only one head
-        for i, ax in enumerate(axes):
+        num_cols = 4  # Number of columns in the grid
+        num_rows = (num_heads + num_cols - 1) // num_cols
+
+        fig, axes = plt.subplots(
+            num_rows, num_cols, figsize=(15, num_rows * 5))
+        axes = axes.flatten()
+
+        for i in range(num_heads):
             attn_data = attentions[-1][0, i].detach().numpy()
-            cax = ax.matshow(attn_data, cmap='viridis')
-            ax.set_title(f'Head {i+1}')
-        fig.colorbar(cax, ax=axes, orientation='vertical', fraction=.1)
-        # plt.tight_layout()
+            cax = axes[i].matshow(attn_data, cmap='viridis')
+            axes[i].set_title(f'Head {i+1}')
+            fig.colorbar(
+                cax, ax=axes[i], orientation='vertical', fraction=.046, pad=0.04)
+
+        # Remove any unused subplots
+        for i in range(num_heads, len(axes)):
+            fig.delaxes(axes[i])
+
+        plt.tight_layout()
 
         # Convert plot to PNG image
         buf = io.BytesIO()

@@ -16,7 +16,9 @@ class GameTweet(models.Model):
 
 class MLModel:
     def __init__(self, model_name='openai-community/gpt2'):
-        login(token="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")
+        with open("/Users/jaya/Documents/Git.nosync/Github/llm-xplorer/xplorer/token.txt", "r") as file:
+            token = file.readline()
+        login(token=token)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name)
 

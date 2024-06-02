@@ -161,3 +161,4 @@ cython_debug/
 
 # Custom directory and files
 llama3-main/
+token.txt
