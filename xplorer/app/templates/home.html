@@ -11,6 +11,7 @@
         <br>
         <h1>LLM Xplorer</h1>
         <p> Test the LLM using a prompt.</p>
+        <hr>
 
         <form method="post" action="{% url 'home' %}" class="row">
             {% csrf_token %}
@@ -24,7 +25,7 @@
             </div>
         </form>
         <br><br>
-        {% if tweet != "" %}
+        {% if tweet != None %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">Input Tweet/Comment</h5>
@@ -37,6 +38,9 @@
                 <p class="card-text">{{sentiment}}</p>
                 </div>
             </div>
+
+            <br>
+            <img src="data:image/png;base64,{{ plot }}" alt="attention visualisation">
         {% endif %}
 
     </div>
