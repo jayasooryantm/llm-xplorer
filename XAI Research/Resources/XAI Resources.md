@@ -1,0 +1,4 @@
+- https://github.com/jphall663/awesome-machine-learning-interpretability
+- https://www.darpa.mil/program/explainable-artificial-intelligence
+- https://paperswithcode.com/task/explainable-artificial-intelligence
+- 
