@@ -1,9 +1,0 @@
-- [x] Understand the different XAI techniques. Explore model-agnostic methods (LIME, SHAP) and model-specific approaches (attention mechanisms for neural networks).
-- [ ] Look beyond these techniques and explore other XAI methods like feature importance, counterfactual explanations, and gradient-based methods.
-- [ ] **Introduction to AI Ethics**: Understand the importance of fairness, transparency, and accountability in AI systems.
-- [ ] **Implement Basic ML Algorithms**: Start with linear regression, logistic regression, and decision trees using Python libraries like scikit-learn.
-- [ ] Complete this course: https://www.codecademy.com/learn/learn-explainable-ai-xai
-- [ ] Complete this Harvard Course: https://interpretable-ml-class.github.io/
-- [ ] **Ethics Case Studies**: Analyse real-world examples where AI systems failed ethically and discuss potential XAI solutions.
-- [ ] - **Build a Toy Model**: Develop a simple ML model (e.g., predicting housing prices) and apply basic XAI techniques like feature importance analysis and SHAP values.
-- [ ] - **Documentation**: Create a detailed report on your toy model project, including explanations of model decisions and potential biases.
