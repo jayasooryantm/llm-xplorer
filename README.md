@@ -1,4 +1,4 @@
-# llm-xplorer
+# xai-xplorer
 
 > Project to visualise the attention mechanism behind llm text generation.
 
